@@ -32,9 +32,9 @@ void	put_background(t_game *game)
 		while (j < WIN_WIDTH - 1)
 		{
 			if (i < WIN_HEIGHT / 2)
-				bg_pixel_put(game->mlx->image, j, i, game->bgcolor->floor);
-			else
 				bg_pixel_put(game->mlx->image, j, i, game->bgcolor->ceiling);
+			else
+				bg_pixel_put(game->mlx->image, j, i, game->bgcolor->floor);
 			j++;
 		}
 		i++;

@@ -42,8 +42,6 @@ void	read_file(t_game *game, char *file, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (line[0] == '\n' && game->map->map_temp)
-			print_error("invalid map");
 		if (line[0] == '\n')
 			continue ;
 		type = get_type(line);

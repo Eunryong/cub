@@ -52,7 +52,7 @@ int	type_color(char *line)
 	{
 		ret = ret << 8;
 		num = ft_myatoi(tmp[i]);
-		if (num < 0 || num > 256)
+		if (num < 0 || num > 255)
 			print_error("invalid value of color");
 		ret += (int)num;
 	}
@@ -62,13 +62,15 @@ int	type_color(char *line)
 
 int	get_type(char *line)
 {
-	if (*line == 'N' && *(line + 1) == 'O')
+	while ((9 <= *line && *line <= 13) || *line == 32)
+		line++;
+	if (*line == 'N' && *(line + 1) == 'O' && *(line + 2) == ' ')
 		return (0);
-	else if (*line == 'W' && *(line + 1) == 'E')
+	else if (*line == 'W' && *(line + 1) == 'E' && *(line + 2) == ' ')
 		return (1);
-	else if (*line == 'S' && *(line + 1) == 'O')
+	else if (*line == 'S' && *(line + 1) == 'O' && *(line + 2) == ' ')
 		return (2);
-	else if (*line == 'E' && *(line + 1) == 'A')
+	else if (*line == 'E' && *(line + 1) == 'A' && *(line + 2) == ' ')
 		return (3);
 	else if (*line == 'F' && *(line + 1) == ' ')
 		return (4);

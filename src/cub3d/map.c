@@ -14,6 +14,13 @@
 
 void	parse_line(t_game *game, char *line, int type)
 {
+	if (type == 6)
+	{
+		game->map->map_temp = ft_strjoin(game->map->map_temp, line);
+		return ;
+	}
+	while ((9 <= *line && *line <= 13) || *line == 32)
+		line++;
 	if (type >= 0 && type <= 3)
 	{
 		if (game->text[type].path)
@@ -32,8 +39,6 @@ void	parse_line(t_game *game, char *line, int type)
 			print_error("invalid number of ceiling color");
 		game->bgcolor->ceiling = type_color(line + 1);
 	}
-	else
-		game->map->map_temp = ft_strjoin(game->map->map_temp, line);
 }
 
 int	trans_map(t_game *game, char **temp, int cnt)
@@ -85,7 +90,7 @@ void	parse_map(t_game *game)
 
 int	check_num(t_map *map, int x, int y)
 {
-	if (y == map->height || x == map->width || x == 0 || y == 0)
+	if (y == map->height - 1 || x == map->width - 1 || x == 0 || y == 0)
 		return (1);
 	if (map->map[y - 1][x] == -1 || map->map[y + 1][x] == -1 || \
 			map->map[y][x - 1] == -1 || map->map[y][x + 1] == -1)
@@ -111,7 +116,9 @@ void	check_map(t_map *map)
 			if (map->map[y][x] != -1 && map->map[y][x] != 1)
 			{
 				if (check_num(map, x, y))
+				{
 					print_error("invalid map");
+				}
 			}
 			x++;
 		}

@@ -36,7 +36,7 @@ char	*ft_mystrdup(char *line)
 	if (ft_strchr(line, '\n'))
 		nl = 1;
 	i = 0;
-	while (line[i] && line[i] == ' ')
+	while ((line[i] && (9 <= line[i] && line[i] <= 13)) || line[i] == 32)
 		i++;
 	len = 0;
 	while (line[i + len])
@@ -55,10 +55,10 @@ long	ft_myatoi(const char *str)
 
 	sign = 1;
 	result = 0;
-	if (ft_strlen(str) > 11)
-		return (-1);
 	while ((9 <= *str && *str <= 13) || *str == 32)
 		str++;
+	if (ft_strlen(str) > 11)
+		return (-1);
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')

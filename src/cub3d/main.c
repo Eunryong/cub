@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 
 	if (argc != 2 || !filename_valid(argv[1]))
-		return (0);
+		print_error("invalid number of argument");
 	init_mlx(&mlx);
 	parse_data(&game, argv[1]);
 	init_data(&game, &mlx);
